@@ -17,7 +17,7 @@
   run project by typing nodemon at the CMD point to the project directory: nodemon
   test project by typing jest: jest
   Swagger is run on this link http://localhost:3000/swagger/
-  Remember to start the server before doing any test and try test 
+  Remember to start the server before doing any test
   AWS S3 config is needed in S3.ts file
  ```
  if everything run successfully you should receive a message saying that the project is running on the port 3000 by defaut;
