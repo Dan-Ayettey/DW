@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+
+    "esModuleInterop": true,
+    "target": "esnext",
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,                     /* Skip type checking of declaration files. */
+    "forceConsistentCasingInFileNames": true,  /* Disallow inconsistently-cased references to the same file. */
+    "resolveJsonModule":true,
+    "sourceMap": true,
+    "outDir": "bin",
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "node_modules/*"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

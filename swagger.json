@@ -1,0 +1,241 @@
+{
+  "swagger": "2.0",
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "schemes": [
+    "http"
+  ],
+  "tags": [
+    {
+      "name": "DW",
+      "description": "API for in product system"
+    }
+  ],
+
+  "info": {
+    "version": "1.0.0",
+    "title": "DW product api",
+    "description": "File storage system",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+
+  "paths": {
+    "/createbuckets": {
+      "parameters": [
+
+        {
+          "name": "JSON Raw",
+          "in": "body",
+          "required": true,
+          "description": "S3 and bucket name ",
+          "schema": {
+            "$ref": "#/definitions/Evalbucket"
+          }
+        }
+      ],
+      "post": {
+        "tags": [
+          "createbucket"
+        ],
+        "summary": "create bucket on aws S3",
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Createbuckets"
+            }
+          },
+          "404": {
+            "description": "Failed. uploadfils not found."
+          }
+        }
+      }
+
+    },
+    "/uploadfiles": {
+      "parameters": [
+
+        {
+          "name": "JSON Raw",
+          "in": "body",
+          "required": true,
+          "description": "File name you want to save in S3 and bucket name ",
+          "schema": {
+            "$ref": "#/definitions/Evalupload"
+          }
+        }
+      ],
+      "post": {
+        "tags": [
+          "uploadfiles"
+        ],
+        "summary": "upload file to aws S3",
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Uploadfiles"
+            }
+          },
+          "404": {
+            "description": "Failed. uploadfiles not found."
+          }
+        }
+      }
+
+    },
+    "/merges": {
+
+      "get": {
+        "tags": [
+          "uploadfiles"
+        ],
+        "summary": "Merge files",
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Uploadfiles"
+            }
+          },
+          "404": {
+            "description": "Failed. uploadfiles not found."
+          }
+        }
+      }
+
+    },
+    "/products/{id}": {
+      "parameters": [
+
+        {
+          "name": "id",
+          "in":"path",
+          "required": true,
+          "description": "Get product by product id ",
+          "schema": {
+            "$ref": "#/definitions/Evalproductbyid"
+          }
+        }
+      ],
+      "get": {
+        "tags": [
+          "productid"
+        ],
+        "summary": "Get productby id",
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/productid"
+            }
+          },
+          "404": {
+            "description": "Failed not found."
+          }
+        }
+      }
+
+    }
+
+  },
+
+  "definitions": {
+
+    "Evalbucket": {
+      "type": "object",
+      "properties": {
+        "bucketname": {
+          "type": "string"
+        }
+      }
+
+    },
+    "Evalproductbyid": {
+      "type": "object",
+      "properties": {
+        "bucketname": {
+          "type": "string"
+        }
+      }
+
+    },
+    "Evalupload": {
+      "type": "object",
+      "properties": {
+        "filename": {
+          "type": "string"
+        },
+        "bucketname": {
+          "type": "string"
+        }
+      }
+    },
+    "Uploadfiles": {
+      "type": "object",
+      "properties": {
+        "isoK": {
+          "type": "boolean"
+        }
+
+      }
+    },
+    "productid": {
+      "type": "object",
+      "properties": {
+        "sku": {
+          "type": "string"
+        },
+        "name":  {
+          "type": "string"
+        },
+        "description":  {
+          "type": "string"
+        },
+        "type":  {
+          "type": "string"
+        },
+        "size":  {
+          "type": "string"
+        },
+        "price": {
+          "type": "object"
+        },
+        "currency":  {
+          "type": "string"
+        },
+        "color": {
+          "type": "object"
+        },
+        "_links": {
+          "type": "object"
+        },
+        "order":  {
+          "type": "string"
+        },
+        "src":  {
+          "type": "string"
+        }
+
+
+      }
+    },
+    "Createbuckets": {
+      "type": "object",
+      "properties": {
+        "Location": {
+          "type": "string"
+        }
+
+      }
+    }
+
+  }
+}
