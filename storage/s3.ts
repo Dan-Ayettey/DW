@@ -5,8 +5,8 @@ import { readFileSync } from "fs";
 // SECRET AND ID need for upload on AWS S3
 export const uploadFile= (fileName: string, bucketName: string, res: any)=> {
 
-    const SECRET = 'mL8keXewhJiOByhJrlpTbAZbi2HlcvarLGmZRIcv'
-    const ID = 'AKIAUILM5ZN34YZOH4F6'
+    const SECRET = ''
+    const ID = ''
 
 
 
@@ -39,8 +39,8 @@ export const uploadFile= (fileName: string, bucketName: string, res: any)=> {
 // create bucket
 // SECRET AND ID need for AWS S3
 export const createBucket=(bucketName:string)=>{
-    const SECRET = 'mL8keXewhJiOByhJrlpTbAZbi2HlcvarLGmZRIcv'
-    const ID = 'AKIAUILM5ZN34YZOH4F6'
+    const SECRET = ''
+    const ID = ''
 
 
     const s3 = new AWS.S3({

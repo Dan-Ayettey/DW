@@ -37,7 +37,7 @@ const  writeAndMergeFile=(buffer:string,res:any)=>{
 (()=>{
     try {
         readFileSync(__dirname+'/DW.json',{encoding:'utf8',flag:'wx'})
-           console.log('File was created')
+        console.log('File was created')
     }catch (e) {
         console.log(e.message)
     }
@@ -52,8 +52,9 @@ export const reader=(id:any,callback: { (data: any): void})=>{
                 callback('Product does not exist, merge product must be merge with endpoint api/v1/merges')
                 return console.error(err.message);
             }else{
-                const products=JSON.parse(data.toString('utf8')).filter(((data: { [x: string]: any; sku: string; })=> data.sku===id))
-                JSON.parse(data.toString('utf8')).filter(((result: { [x: string]: any; sku: string; })=> result[id] !=undefined ? products.push(...result[id]):[]));
+
+                const products=JSON.parse('[{}]'||JSON.stringify(data.toString('utf8'))).filter(((data: { [x: string]: any; sku: string; })=> data.sku===id))
+                JSON.parse('[{}]'||JSON.stringify(data.toString('utf8'))).filter(((result: { [x: string]: any; sku: string; })=> result[id] !=undefined ? products.push(...result[id]):[]));
                 callback(products)
             }
 

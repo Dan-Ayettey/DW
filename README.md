@@ -1,5 +1,5 @@
 # DW-api-briefly
- Viaplay trailer api
+ DW  api
  
  # DW Group  Fetch Product and Images
  
@@ -10,60 +10,39 @@
    - first clone the repo from Github
  
  ```sh
-  git clone https://github.com/Dan-Ayettey/Viaplay-trailer-api-briefly.git
-  cd Viaplay-trailer-api-briefly
+  git clone https://github.com/Dan-Ayettey/DW.git
+  cd DW
   npm i 
-  npm start
+  run project by typing nodemon at the CMD  point to the project directory.
+  run project by typing nodemon at the CMD point to the project directory: nodemon
+  test project by typing jest: jest
+  Swagger is run on this link http://localhost:3000/swagger/
+  Remember to start the server before doing any test and try test 
+  AWS S3 config is needed in S3.ts file
  ```
  if everything run successfully you should receive a message saying that the project is running on the port 3000 by defaut;
  
  ```sh
- Nodejs development server started: <http://127.0.0.1:3000>
- ```
- ### Requests
- This project one sample request which is a **GET** request to the following Route: **Base_url +"/api/v1/trailers?"url=_{movie_resource_url_from_viaplay}_**
- 
+ Nodejs development server started: <http://127.0.0.1:3000> or listening on port 3000.
+ Swagger is run on this link http://localhost:3000/swagger/
+ ``` 
  ##### Request URL 
-   http://localhost:3000/api/v1/trailers?url=http://content.viaplay.se/pc-se/film
- | http://localhost:3000/api/v1/trailers?url=https://content.viaplay.se/pc-se/film/troja-2004
- ##### Some Youtube URL 
-  
-  https://www.youtube.com/watch?v=qsOwj0PR5Sk|https://www.youtube.com/watch?v=OiTiKOy59o4
- | https://www.youtube.com/watch?v=WcXt9aUMbBk|https://www.youtube.com/watch?v=btI7yHxn1NU
- | https://www.youtube.com/watch?v=a6O30nJ02PU|https://www.youtube.com/watch?v=akwGjUeU6YA
- | https://www.youtube.com/watch?v=YG_a8lw512A|https://www.youtube.com/watch?v=aNGhnNMSopI
- | https://www.youtube.com/watch?v=dSBsNeYqh-k|https://www.youtube.com/watch?v=bYEoQetO56E|
- | https://www.youtube.com/watch?v=EtpBbRsNr-M|https://www.youtube.com/watch?v=4w8lohkQtbY
- |  
- 
+   http://localhost:3000/api/v1/merges |
+   http://localhost:3000/api/v1/uploadfiles |
+   http://localhost:3000/api/v1/createbuckets/ |
+   http://localhost:3000/api/v1/products/{id}
+   http://localhost:3000/swagger/
+     
  ### Development
  Platform: I decided to work with Nodejs, since I have a lot of experience with Express and Auth  protocols
- **Target: create REST API for providing client with Trailer URLs**
- Movie Resource Link as Input: https://content.viaplay.se/pc-se/film/arrival-2016 
- **Return Trailer as output**
- Within the movie resource, the IMDb information can be found at the following path:
- _embedded[“viaplay:blocks”][0]._embedded[“viaplay:product”].content.imdb
- Using the get rquest of the provided link doesn't return  with a movie resource!
- The output of the GET request of  https://content.viaplay.se/pc-se/film/arrival-2016
- ```json
- {
-     "code": 5100,
-     "redirectPath": "/pc-se/film",
-     "url": "/pc-se/film/arrival-2016"
- }
- ```
- - I decided to use **"http://content.viaplay.se/pc-se/film" and https://content.viaplay.se/pc-se/film/troja-2004** to get movie resource instead.
- After getting the movie resource I extracted the IMDB id;
- - I called THE MOVIE DB API to get the movie id from IMDB id:
- https://api.themoviedb.org/3/find/{external_id}?api_key=<<api_key>>&language=en-US&external_source=imdb_id
- - I called the Movie DB API to get the trailler using themoviedb id:
- https://api.themoviedb.org/3/movie/603/videos?api_key=cf59e3834d8b8ef500ff73aa09dec848&language=en-US
- - After getting Youtube key, I store the viaplay movie resource url with youtube url in Redis, simple-cache, express compression modules
-  for faster retrieval for the next call, for performance reasons using compressor and bunyan for debugging .
+ **Target: create REST API service that connects to upstream data sources to retrieve and combine
+                           data.**
+                           You need AWS S3 to store file needed to be configurations: AWS S3 {       
+                            secretAccessKey: SECRET,
+                            accessKeyId: ID
+                            } located in s3.ts   
  
- ### Todos
-  - little more test needed
-  - shorten the response for the first time api call
+
   
   ####### Links to modules and middle-wares
  
@@ -74,11 +53,10 @@
       [download-express]: <https://www.npmjs.com/package/morgan>
        [download-express]: <https://www.npmjs.com/package/express-cache-middleware'>
        [download-express]: <https://www.npmjs.com/package/body-parser'>
-       [download-express]: <https://www.npmjs.com/package/bunyan'>
-    [download]:<https://www.npmjs.com/package/redis>
-    
-    #### third party links
-    [moviedb-api]: <https://www.themoviedb.org/documentation/api>
-    [download-here]: <https://getcomposer.org/download/>
- 
+       [download-express]: <https://www.npmjs.com/package/nodemon'>
+        [download-express]: <https://www.npmjs.com/package/node-schedule'>
+       "supertest": "^6.1.3",
+        "swagger-ui-express": "^4.1.6",
+   
+   
 

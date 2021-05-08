@@ -32,6 +32,7 @@ router.post("/api/v1/uploadfiles", (req:any, res:any) => {
 });
 //schedule and merge files
 router.get("/api/v1/merges", (req:any, res:any) => {
+
   schedule(res)
 });
 // create aws bucket, name has to unique
